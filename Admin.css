@@ -1,0 +1,198 @@
+/* Table container: vertical + horizontal scrolling */
+.products-table-card {
+  width: 100%;
+  max-height: 430px;
+  overflow: auto;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #ffffff;
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+/* Main table */
+.products-table {
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+
+  color: #334155;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Table headings */
+.products-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  padding: 15px 16px;
+  background-color: #f1f5f9;
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+
+  border-bottom: 1px solid #cbd5e1;
+}
+
+#current_price_thead, #old_price_thead, #name_thead{
+  cursor: pointer;
+}
+#current_price_thead:hover, #old_price_thead:hover, #name_thead:hover{
+  background-color: #0ea5e9;
+}
+/* Table cells */
+.products-table tbody td {
+  padding: 14px 16px;
+  vertical-align: middle;
+
+  border-bottom: 1px solid #edf2f7;
+}
+
+/* Alternate row background */
+.products-table tbody tr:nth-child(even) {
+  background-color: #fafcff;
+}
+
+/* Hover effect */
+.products-table tbody tr:hover {
+  background-color: #f0f7ff;
+}
+
+/* Last row border */
+.products-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Actions column */
+.products-table .product-actions {
+  display: table-cell;
+  white-space: nowrap;
+}
+
+/* Edit and delete SVG icons */
+.products-table .edit,
+.products-table .delete {
+  width: 17px;
+  height: 17px;
+
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;
+
+  cursor: pointer;
+  fill: #64748b;
+  transition: color 0.2s ease, fill 0.2s ease;
+}
+
+.delete path, .edit path {
+  pointer-events: none;
+}
+
+.products-table .edit:hover {
+  fill: #2563eb;
+}
+
+.products-table .delete:hover {
+  fill: #dc2626;
+}
+
+/* Scrollbar for Chrome, Edge and Safari */
+.products-table-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.products-table-scroll::-webkit-scrollbar-track {
+  background-color: #f8fafc;
+}
+
+.products-table-scroll::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 8px;
+}
+
+.products-table-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .products-table-scroll {
+    max-height: 360px;
+    border-radius: 8px;
+  }
+
+  .products-table {
+    min-width: 1000px;
+    font-size: 13px;
+  }
+
+  .products-table thead th,
+  .products-table tbody td {
+    padding: 12px;
+  }
+}
+
+
+/*=============================================================================*/
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 9999;
+
+  width: 90%;
+  max-width: 350px;
+  padding: 24px;
+
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  box-shadow:
+    0 0 0 100vmax rgba(15, 23, 42, 0.45),
+    0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.popup h3 {
+  margin: 0 0 24px;
+  font-size: 18px;
+  color: #1e293b;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.popup-buttons button {
+  padding: 9px 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #334155;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: #fff;
+  border-color: #dc2626 !important;
+}

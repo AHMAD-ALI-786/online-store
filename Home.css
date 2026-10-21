@@ -1,0 +1,463 @@
+
+/* -------------------------------------------------------------
+    DESIGN TOKENS
+   ------------------------------------------------------------- */
+:root {
+  /* Brand colors */
+  --color-header-bg: #0f172a;
+  --color-primary: #38bdf8;
+  --color-primary-dark: #0ea5e9;
+  --color-water: #1f6f78;
+  --color-water-dark: #144d54;
+  --color-brass: #b4732e;
+  --color-danger: #b23b3b;
+
+  /* Neutrals */
+  --color-ink: #14181a;
+  --color-ink-muted: #5b6469;
+  --color-canvas: #f1eee6;
+  --color-surface: #ffffff;
+  --color-border: #ddd8cc;
+  --color-on-dark: #f4f1e8;
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-md: 1.05rem;
+  --fs-logo: 1.5rem;
+
+  /* Spacing scale */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(20, 24, 26, 0.1), 0 1px 2px rgba(20, 24, 26, 0.06);
+  --shadow-card-hover: 0 10px 24px rgba(15, 23, 42, 0.16);
+
+  /* Motion */
+  --transition-fast: 0.2s ease;
+
+  /* Header sizing */
+  --header-padding: 14px 4%;
+  --cart-icon-size: 24px;
+}
+
+/* -------------------------------------------------------------
+    RESET
+   ------------------------------------------------------------- */
+*,*::before,*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,input,select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* -------------------------------------------------------------
+    HEADER
+   ------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--header-padding);
+  background-color: var(--color-header-bg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.header-logo {
+  color: var(--color-white);
+  font-size: var(--fs-logo);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.header-logo-text-2 {
+  color: var(--color-primary);
+}
+
+.cart-box {
+  position: relative;
+  display: inline-flex;
+  padding: var(--space-2xs);
+  border-radius: var(--radius-sm);
+}
+
+.cart-box-icon {
+  width: var(--cart-icon-size);
+  height: var(--cart-icon-size);
+  fill: var(--color-white);
+  transition: transform var(--transition-fast), fill var(--transition-fast);
+}
+
+.cart-box:hover .cart-box-icon {
+  transform: scale(1.15);
+  fill: var(--color-primary);
+}
+
+.cart-box-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--space-2xs);
+  border-radius: var(--radius-pill);
+  /* background-color: var(--color-primary); */
+  color: yellow;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------
+    PRODUCT GRID
+   ------------------------------------------------------------- */
+.products-section {
+  margin-bottom: var(--space-xl);
+  padding-top: var(--space-lg);
+}
+
+.section-title {
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  padding: 0 var(--space-md);
+}
+
+/* -------------------------------------------------------------
+    PRODUCT CARD
+   ------------------------------------------------------------- */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.product-card-link {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.product-card-media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--color-border);
+}
+
+.product-card-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+
+
+.product-card-badge {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-danger);
+  color: var(--color-on-dark);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+.product-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--space-sm);
+}
+
+.product-card-category {
+  font-size: var(--fs-xs);
+  color: var(--color-ink-muted);
+}
+
+.product-card-name {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.3;
+  /* keep card heights equal: max 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin-top: var(--space-2xs);
+}
+
+.product-card-price-current {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--color-water);
+}
+
+.product-card-price-old {
+  font-size: var(--fs-xs);
+  color: var(--color-ink-muted);
+  text-decoration: line-through;
+}
+
+.product-card-cart-btn {
+  margin: 0 var(--space-sm) var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-water);
+  border-radius: var(--radius-sm);
+  color: var(--color-water);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.product-card-cart-btn:hover {
+  background-color: var(--color-water);
+  color: var(--color-on-dark);
+}
+
+.product-card-cart-btn:active {
+  transform: scale(0.97);
+}
+
+/* -------------------------------------------------------------
+    RESPONSIVE — HEADER
+   ------------------------------------------------------------- */
+@media (min-width: 640px) {
+  :root {
+    --header-padding: 16px 5%;
+    --cart-icon-size: 28px;
+  }
+}
+
+/* -------------------------------------------------------------
+    RESPONSIVE — TABLET (min-width: 640px)
+   ------------------------------------------------------------- */
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------
+    RESPONSIVE — DESKTOP (min-width: 960px)
+   ------------------------------------------------------------- */
+@media (min-width: 960px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+
+
+
+
+/* ====================================================
+                ADMIN CSS 
+======================================================= */
+.admin-cart{
+  fill: var(--color-primary);
+}
+
+.admin-welcome {
+  color: var(--color-white);
+  font-size: var(--fs-logo);
+  font-weight: 600;
+}
+
+.admin-header {
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ===================== PRODUCT FORM ====================================================== */
+
+.add-product-dynamically, .remove-product-dynamically{
+
+  margin: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: calc(100% - (var(--space-md) * 2));
+  max-width: 520px;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+  /* 👇 YEH DO LINES ADD KAREIN 👇 */
+  max-height: 90vh;    /* Form screen ki 90% height se zyada bara nahi hoga */
+  overflow-y: auto;    /* Form ke andar scrollbar aa jayega jab inputs zyada honge */
+
+  box-shadow:
+    0 0 0 100vmax rgba(15, 23, 42, 0.45),
+    0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+  display: none;
+}
+ 
+.product-form-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+ 
+.product-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+ 
+ 
+.product-form-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+ 
+.product-form-input {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-base);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+ 
+.product-form__input::placeholder {
+  color: var(--color-ink-muted);
+}
+ 
+.product-form__input:hover {
+  border-color: var(--color-primary-dark);
+}
+ 
+.product-form__input:focus {
+  outline: none;
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+ 
+@media (min-width: 640px) {
+  .product-form {
+    padding: var(--space-xl);
+  }
+ 
+  .product-form__row {
+    flex-direction: row;
+  }
+ 
+  .product-form__row .product-form__field {
+    flex: 1 1 0;
+  }
+}
+
+.btn {
+  min-height: 46px;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-header-bg);
+  font-weight: 700;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
